@@ -71,7 +71,7 @@ fn main(_: Mailbox<()>) {
 mod test {
     use super::*;
 
-    #[test]
+    #[lunatic::test]
     fn increment() {
         let mut counter = Counter::new(0);
         for i in 0..10 {
@@ -80,7 +80,7 @@ mod test {
         }
     }
 
-    #[test]
+    #[lunatic::test]
     fn increment_twice() {
         let mut counter = Counter::new(0);
         for i in 0..10 {

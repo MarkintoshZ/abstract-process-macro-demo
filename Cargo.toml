@@ -7,5 +7,6 @@ edition = "2018"
 [dependencies]
 lunatic = { git = "https://github.com/MarkintoshZ/lunatic-rs", rev = "83322c816dfed74a942058fa808091bb2d42b0f9" }
 lunatic-macros = { git = "https://github.com/MarkintoshZ/lunatic-rs", rev = "83322c816dfed74a942058fa808091bb2d42b0f9" }
+lunatic-test = { git = "https://github.com/MarkintoshZ/lunatic-rs", rev = "83322c816dfed74a942058fa808091bb2d42b0f9" }
 serde = { version = "1.0", features = ["derive"] }
 
