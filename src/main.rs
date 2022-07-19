@@ -51,6 +51,8 @@ impl Counter {
 fn main(_: Mailbox<()>) {
     // use counter locally
     let mut counter = Counter::new(0);
+    counter.increment(Inc);
+    println!("count = {}", counter.count(Count));
     counter.increment_twice();
     println!("count = {}", counter.count(Count));
 
@@ -58,6 +60,9 @@ fn main(_: Mailbox<()>) {
     let counter = Counter::start_link(0, None);
     counter.increment(Inc);
     counter.increment(Inc);
+    counter.increment(Inc);
+    counter.increment(Inc);
+    println!("count = {}", counter.count(Count));
     counter.increment(Inc);
     counter.increment(Inc);
 }
