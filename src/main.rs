@@ -1,8 +1,8 @@
 use lunatic::{
+    abstract_process,
     process::{Message, ProcessRef, Request, StartProcess},
     Mailbox,
 };
-use lunatic_macros::*;
 
 struct Counter {
     count: u32,
@@ -25,13 +25,13 @@ impl Counter {
     }
 
     #[process_message]
-    fn increment(&mut self, _: Inc) {
+    fn increment(&mut self) {
         self.count += 1;
         self.check_count();
     }
 
     #[process_request]
-    fn count(&self, _: Count) -> u32 {
+    fn count(&self) -> u32 {
         self.count
     }
 
@@ -42,8 +42,8 @@ impl Counter {
     }
 
     fn increment_twice(&mut self) {
-        self.increment(Inc);
-        self.increment(Inc);
+        self.increment();
+        self.increment();
     }
 }
 
@@ -51,20 +51,20 @@ impl Counter {
 fn main(_: Mailbox<()>) {
     // use counter locally
     let mut counter = Counter::new(0);
-    counter.increment(Inc);
-    println!("count = {}", counter.count(Count));
+    counter.increment();
+    println!("count = {}", counter.count());
     counter.increment_twice();
-    println!("count = {}", counter.count(Count));
+    println!("count = {}", counter.count());
 
     // use counter as a process
     let counter = Counter::start_link(0, None);
-    counter.increment(Inc);
-    counter.increment(Inc);
-    counter.increment(Inc);
-    counter.increment(Inc);
-    println!("count = {}", counter.count(Count));
-    counter.increment(Inc);
-    counter.increment(Inc);
+    counter.increment();
+    counter.increment();
+    counter.increment();
+    counter.increment();
+    println!("count = {}", counter.count());
+    counter.increment();
+    counter.increment();
 }
 
 #[cfg(test)]
@@ -76,7 +76,7 @@ mod test {
         let mut counter = Counter::new(0);
         for i in 0..10 {
             assert_eq!(i, counter.count);
-            counter.increment(Inc);
+            counter.increment();
         }
     }
 
