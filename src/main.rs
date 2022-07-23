@@ -1,6 +1,6 @@
 use lunatic::{
     abstract_process,
-    process::{Message, ProcessRef, Request, StartProcess},
+    process::{ProcessRef, StartProcess},
     Mailbox,
 };
 
@@ -24,13 +24,13 @@ impl Counter {
         Self { count }
     }
 
-    #[process_message]
+    #[handle_message]
     fn increment(&mut self) {
         self.count += 1;
         self.check_count();
     }
 
-    #[process_request]
+    #[handle_request]
     fn count(&self) -> u32 {
         self.count
     }

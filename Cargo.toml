@@ -5,6 +5,6 @@ authors = ["Mark Zhang <markintoshzzz@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-lunatic = { git = "https://github.com/MarkintoshZ/lunatic-rs", rev = "e6d709d" }
+lunatic = { git = "https://github.com/MarkintoshZ/lunatic-rs", rev = "b89829c" }
 serde = { version = "1.0", features = ["derive"] }
 
